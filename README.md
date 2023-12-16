@@ -1,1 +1,1 @@
-# next-fullstack-frontend-sample
+# next-fullstack-sample
