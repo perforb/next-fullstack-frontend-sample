@@ -20,7 +20,18 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@app/*": [
+        "app/*"
+      ],
+      "@api/*": [
+        "app/api/*"
+      ],
+      "@config/*": [
+        "app/config/*"
+      ]
+    },
   },
   "include": [
     "next-env.d.ts",
