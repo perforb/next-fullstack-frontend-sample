@@ -10,8 +10,9 @@ declare global {
       MONGO_DB_USER: string,
       MONGO_DB_PASSWORD: string,
       MONGO_DB_ATLAS_HOST: string,
+      JWT_SECRET_KEY: string,
     }
   }
 }
 
-export {}
+export {};
