@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {ItemModel} from "@api/item/schema";
 import connectMongoDB from "@config/database";
+import {ItemModel} from "@api/item/schema";
 
 export async function GET(request: NextRequest, context) {
   const id = context.params.id;
@@ -12,8 +12,6 @@ export async function GET(request: NextRequest, context) {
       item: item,
     });
   } catch (e) {
-    return NextResponse.json({
-      message: "Failed to read an item."
-    });
+    throw e;
   }
 }

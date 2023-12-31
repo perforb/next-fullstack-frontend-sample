@@ -11,8 +11,6 @@ export async function GET() {
       items: items,
     });
   } catch (e) {
-    return NextResponse.json({
-      message: "Failed to read items."
-    });
+    throw e;
   }
 }

@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {ItemModel} from "@api/item/schema";
 import connectMongoDB from "@config/database";
+import {ItemModel} from "@api/item/schema";
 
 export async function PUT(request: NextRequest, context) {
   const requestBody = await request.json();
@@ -14,8 +14,6 @@ export async function PUT(request: NextRequest, context) {
       message: "Updated an item.",
     });
   } catch (e) {
-    return NextResponse.json({
-      message: "Failed to update an item."
-    });
+    throw e;
   }
 }
