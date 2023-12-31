@@ -7,12 +7,15 @@ export async function PUT(request: NextRequest, context) {
   const id = context.params.id;
   try {
     await connectMongoDB();
-    await ItemModel.updateOne({
-      _id: id
-    }, requestBody);
-    return NextResponse.json({
-      message: "Updated an item.",
-    });
+    const item = await ItemModel.findById(id);
+    if (item.email === requestBody.email) {
+      await ItemModel.updateOne({
+        _id: id
+      }, requestBody);
+      return NextResponse.json({message: "Updated an item.",});
+    } else {
+      return NextResponse.json({message: "Cannot update.",});
+    }
   } catch (e) {
     throw e;
   }
