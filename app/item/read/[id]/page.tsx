@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const getItem = async (id) => {
   const response = await fetch(
@@ -21,6 +22,10 @@ const ReadItem = async (context) => {
         <h2>¥{item.price}</h2>
         <hr/>
         <p>{item.description}</p>
+      </div>
+      <div>
+        <Link href={`/item/update/${item._id}`}>アイテム編集</Link>
+        <Link href={`/item/delete/${item._id}`}>アイテム削除</Link>
       </div>
     </div>
   );
