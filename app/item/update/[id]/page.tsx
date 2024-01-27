@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useState} from "react";
+import useAuth from "@app/utils/useAuth";
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("");
@@ -8,6 +9,8 @@ const UpdateItem = (context) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
+
+  const loginUserEmail = useAuth();
 
   useEffect(() => {
     const getItem = async (id) => {
@@ -41,7 +44,7 @@ const UpdateItem = (context) => {
           price: price,
           image: image,
           description: description,
-          email: "dummy@gmail.com"
+          email: loginUserEmail
         })
       });
       const jsonData = await response.json();
@@ -51,22 +54,26 @@ const UpdateItem = (context) => {
     }
   };
 
-  return (
-    <div>
-      <h1>Update the item</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)}
-               placeholder="アイテム名" required/>
-        <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="価格"
-               required/>
-        <input type="text" name="image" value={image} onChange={(e) => setImage(e.target.value)} placeholder="画像"
-               required/>
-        <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)}
-                  placeholder="商品説明" required></textarea>
-        <button>編集</button>
-      </form>
-    </div>
-  );
+  if (loginUserEmail === email) {
+    return (
+      <div>
+        <h1>Update the item</h1>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)}
+                 placeholder="アイテム名" required/>
+          <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="価格"
+                 required/>
+          <input type="text" name="image" value={image} onChange={(e) => setImage(e.target.value)} placeholder="画像"
+                 required/>
+          <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)}
+                    placeholder="商品説明" required></textarea>
+          <button>編集</button>
+        </form>
+      </div>
+    );
+  } else {
+    return <h1>権限がありません</h1>;
+  }
 };
 
 export default UpdateItem;
