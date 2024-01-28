@@ -30,7 +30,7 @@ const Register = () => {
   };
   return (
     <div>
-      <h1>User registration</h1>
+      <h1 className="page-title">User registration</h1>
       <form onSubmit={handleSubmit}>
         <input value={name}
                onChange={(e) => setName(e.target.value)} type="text" name="name" placeholder="your name"

@@ -57,7 +57,7 @@ const UpdateItem = (context) => {
   if (loginUserEmail === email) {
     return (
       <div>
-        <h1>Update the item</h1>
+        <h1 className="page-title">Update the item</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)}
                  placeholder="アイテム名" required/>

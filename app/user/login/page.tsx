@@ -29,7 +29,7 @@ const Login = () => {
   };
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className="page-title">Login</h1>
       <form onSubmit={handleSubmit}>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email"
                placeholder="your email"
