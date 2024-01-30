@@ -3,6 +3,7 @@
 import {useEffect, useState} from "react";
 import Image from "next/image";
 import useAuth from "@app/utils/useAuth";
+import process from "process";
 
 const DeleteItem = (context) => {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ const DeleteItem = (context) => {
   useEffect(() => {
     const getItem = async (id) => {
       const response = await fetch(
-        `http://localhost:3000/api/item/read/${id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/read/${id}`,
         {cache: "no-store"}
       );
       const jsonData = await response.json();
@@ -33,7 +34,7 @@ const DeleteItem = (context) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/item/delete/${context.params.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/delete/${context.params.id}`, {
         method: "DELETE",
         headers: {
           "Accept": "application/json",

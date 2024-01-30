@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 import useAuth from "@app/utils/useAuth";
+import process from "process";
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("");
@@ -15,7 +16,7 @@ const UpdateItem = (context) => {
   useEffect(() => {
     const getItem = async (id) => {
       const response = await fetch(
-        `http://localhost:3000/api/item/read/${id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/read/${id}`,
         {cache: "no-store"}
       );
       const jsonData = await response.json();
@@ -32,7 +33,7 @@ const UpdateItem = (context) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/item/update/${context.params.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/update/${context.params.id}`, {
         method: "PUT",
         headers: {
           "Accept": "application/json",

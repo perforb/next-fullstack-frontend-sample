@@ -2,6 +2,7 @@
 
 import {useState} from "react";
 import useAuth from "@app/utils/useAuth";
+import * as process from "process";
 
 const CreateItem = () => {
   const [title, setTitle] = useState("");
@@ -14,7 +15,7 @@ const CreateItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/item/create", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/create`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
